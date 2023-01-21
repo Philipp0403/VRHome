@@ -38,8 +38,9 @@ public class SettingTangible : MonoBehaviour
     public void SelectOptionToAdjust()
     {
         // Noch hinzufuegen vor den if-Abfragen fuer Abfrage nach Kontakt von Hand mit canvas: rightHand.GameObject... || leftHand.GameObject...
-        if (rightHand.WhenStateChanged += )
+        /*if (rightHand.WhenStateChanged += )
             leftHand.Inter
+            Will Canvas auswaehlen und kein Prefab*/
         {
             // Hier einstellen von true indem gedruecktes und erkannte Einstellung von oben uebertragen mit Canvas."jeweilige Einstellung" = true
             // Auswahl von Helligkeit
