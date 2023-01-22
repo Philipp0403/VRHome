@@ -4,56 +4,45 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public GameObject Lamp;
+    //What Tangible Prefab willbereproduced?
+    public GameObject tangibleType;
 
-    public Vector3 initialLampPosition = new Vector3(0f, 0.02f, 0f);
-    public Vector3 initialPosition;
+    //Where does the tangible startout?
+    public Vector3 initialObjectPosition;
+
+    // has the tangible alreday been moved?
+    private bool objecthasMoved = false;
+
+    //How after what distance will the movement be detected?
+    private float movementThreshhold = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        // string[] test = { "a", "b" };
-        // foreach (string i in test)
-        // {
-        //     Debug.Log(i);
-        // }
-        Debug.Log(GameObject.Find("InitialLamp").transform.localPosition);
-        //GameObject moin = Instantiate(Lamp, new Vector3(0, 2, 0), Quaternion.identity);
-        //moin.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        Debug.Log(initialObjectPosition);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Variables
-        // objects [{objectName: "lamp", initalPosition: {x: 2, y: 1, z: 3}}, {objectName: "settings", initalPosition: {x: 3, y: 1, z: 3}} ...]
+        //get new position of object
+        Vector3 newPosition = transform.position;
 
-        // Functions
-        // foreach (int i in objects) {
-
-        // }
-        if (ObjectHasMoved("InitialLamp")) {
-            Debug.Log("start timer");
-        } else {
-            Debug.Log("dont start timer!");
+        if(initialObjectPosition != newPosition){
+            Debug.Log("New Position: "+ newPosition);
+            Debug.Log("Detected: " + movementThreshholdExceeded(initialObjectPosition, newPosition));
+            //Was the object moved enough to be detected
+            if( movementThreshholdExceeded(initialObjectPosition, newPosition) && !objecthasMoved){
+                GameObject newObject = Instantiate(tangibleType, initialObjectPosition, Quaternion.identity);
+                newObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                objecthasMoved = true;
+            }
         }
     }
 
-    bool ObjectHasMoved(string objectName) {
-        //Debug.Log("I am trying really hard!");
-        GameObject obj = GameObject.Find(objectName);
-        Vector3 currentPosition = obj.transform.localPosition;
-        //Debug.Log("Hihi this is the position: " + currentPosition);
-        switch(objectName) {
-            case "InitialLamp":
-                initialPosition = initialLampPosition;
-                break;
-            default:
-                Debug.Log("I don't know your tangible ;(");
-                break;
-        }
-        bool tmp = initialPosition == currentPosition;
-        Debug.Log("currentPosition:" + currentPosition+"; initialPosition: "+initialLampPosition+"; IsEqual: "+tmp);
-        return tmp;
+    bool movementThreshholdExceeded(Vector3 lastposition, Vector3 newPosition){
+        return Mathf.Abs(lastposition.x - newPosition.x) > movementThreshhold
+            || Mathf.Abs(lastposition.y - newPosition.y) > movementThreshhold
+            || Mathf.Abs(lastposition.z - newPosition.z) > movementThreshhold;
     }
 }
