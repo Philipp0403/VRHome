@@ -21,8 +21,7 @@ public class Surface : MonoBehaviour
 	{
         if (collision.transform.up.y > .99f)
         {
-            Debug.Log(collision.contactCount);
-            Debug.Log(collision.contacts[0].point);
+
             point.transform.position = collision.collider.transform.position;
             collision.gameObject.GetComponent<Tangible>().inContactWithSurface = true;
             collision.gameObject.GetComponent<Tangible>().surfaceHeight = collision.transform.position.y;
