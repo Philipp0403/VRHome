@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SettingTangible : MonoBehaviour
+public class SettingTangible : Tangible
 {
     // Wurde die Option ausgewaehlt
     public bool brightnessBool = false;
@@ -15,6 +15,11 @@ public class SettingTangible : MonoBehaviour
     public bool temperatureBool = false;
     public bool timeBool = false;
 
+    // Art des EinstellungsTangible
+    public bool activationTangible = false;
+    public bool heaterTangible = false;
+    public bool lampTangible = false;
+    public bool shuttersTangible = false;
     // Helligkeit mit Gleitkommazahl
     public float brightness;
     // RGB mit HexCode
@@ -121,6 +126,31 @@ public class SettingTangible : MonoBehaviour
     public void SelectValueOfTime()
     {
 
+    }
+    //Verbindung von Objecttangible mit leerem SettingsTangible
+    public void SetOptions()
+    {
+        if (activationTangible)
+        {
+            onOffBool = true;
+            timeBool = true;
+        }
+
+        if (heaterTangible)
+        {
+            temperatureBool = true;
+        }
+
+        if (lampTangible)
+        {
+            brightnessBool = true;
+            colorBool = true;
+        }
+
+        if (shuttersTangible)
+        {
+            shuttersClosedBool = true;
+        }
     }
 
 }
