@@ -244,8 +244,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inContactWithSurface: 0
   surfaceHeight: 1.1
+  grabThreshold: 0.7
   leftHandState: {fileID: 0}
   rightHandState: {fileID: 0}
+  rightFingerTip: {fileID: 0}
 --- !u!1818360608 &419830662
 PositionConstraint:
   m_ObjectHideFlags: 0
@@ -276,7 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633f2be7bcb464328ac0903489613127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lamp: {fileID: 3179424871723063196, guid: ebd900d7cfb2446ce8a58a2bf866118f, type: 3}
+  tangibleType: {fileID: 0}
+  initialObjectPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &3931212888310576942
 PrefabInstance:
   m_ObjectHideFlags: 0
