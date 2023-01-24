@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2799195951262674367}
   - component: {fileID: 2799195951262674240}
   - component: {fileID: 2799195951262674241}
+  - component: {fileID: 8037710998539108182}
   - component: {fileID: 2799195951262674242}
   - component: {fileID: 2799195951262674243}
   - component: {fileID: 2799195951262674244}
@@ -19,7 +20,6 @@ GameObject:
   - component: {fileID: 2799195951262674363}
   - component: {fileID: 2799195951262674364}
   - component: {fileID: 2799195951262674365}
-  - component: {fileID: 8037710998539108182}
   - component: {fileID: 419830662}
   m_Layer: 0
   m_Name: Tangible
@@ -41,7 +41,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2799195951262674367
 MeshFilter:
@@ -120,6 +120,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8037710998539108182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2799195951262674247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690a54fcb65221f4281533a9134e24c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectedTangibles: []
+  inContactWithSurface: 0
+  surfaceHeight: 1.1
+  grabThreshold: 0.05
+  leftHandState: {fileID: 0}
+  rightHandState: {fileID: 0}
+  leftFingerTip: {fileID: 0}
+  rightFingerTip: {fileID: 0}
+  linePrefab: {fileID: 6560571692410924507, guid: 54ac8ff19ec572f468c0a677b5ff910c,
+    type: 3}
 --- !u!114 &2799195951262674242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,22 +302,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.96, y: 2, z: 0.2}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &8037710998539108182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2799195951262674247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690a54fcb65221f4281533a9134e24c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inContactWithSurface: 0
-  surfaceHeight: 1.1
-  leftHandState: {fileID: 0}
-  rightHandState: {fileID: 0}
 --- !u!1818360608 &419830662
 PositionConstraint:
   m_ObjectHideFlags: 0
