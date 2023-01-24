@@ -19,7 +19,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(initialObjectPosition);
+        //Debug.Log(initialObjectPosition);
     }
 
     // Update is called once per frame
@@ -29,8 +29,8 @@ public class NewBehaviourScript : MonoBehaviour
         Vector3 newPosition = transform.position;
 
         if(initialObjectPosition != newPosition){
-            Debug.Log("New Position: "+ newPosition);
-            Debug.Log("Detected: " + movementThreshholdExceeded(initialObjectPosition, newPosition));
+            //Debug.Log("New Position: "+ newPosition);
+            //Debug.Log("Detected: " + movementThreshholdExceeded(initialObjectPosition, newPosition));
             //Was the object moved enough to be detected
             if( movementThreshholdExceeded(initialObjectPosition, newPosition) && !objecthasMoved){
                 GameObject newObject = Instantiate(tangibleType, initialObjectPosition, Quaternion.identity);
