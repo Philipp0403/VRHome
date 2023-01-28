@@ -5,9 +5,10 @@ public class Tangible : MonoBehaviour
 {
     public List<Tangible> connectedTangibles = new List<Tangible>();
     public List<TangibleLine> tangibleLines = new List<TangibleLine>();
+    public List<TangibleLine> temporaryTangibleLines = new List<TangibleLine>();
 
     public bool inContactWithSurface = false;
-    public float surfaceHeight = 1.1f;
+    public float HeightToLock = 1.1f;
     public float grabThreshold = 0.7f;
     public Oculus.Interaction.HandGrab.HandGrabInteractor leftHandState;
     public Oculus.Interaction.HandGrab.HandGrabInteractor rightHandState;
@@ -16,21 +17,21 @@ public class Tangible : MonoBehaviour
     GameObject table;
     public GameObject linePrefab;
     GameObject testTangible;
+    public Transform startNewConnectionButton;
+    PokeInteractorVRHome rightPoke;
+    PokeInteractorVRHome leftPoke;
     // Start is called before the first frame update
     void Start()
     {
+        rightPoke = GameObject.Find("PokeRightRandVRHome").GetComponent<PokeInteractorVRHome>();
+        leftPoke = GameObject.Find("PokeLeftRandVRHome").GetComponent<PokeInteractorVRHome>();
         leftHandState = GameObject.Find("HandGrabInteractorL").GetComponent<Oculus.Interaction.HandGrab.HandGrabInteractor>();
         rightHandState = GameObject.Find("HandGrabInteractorR").GetComponent<Oculus.Interaction.HandGrab.HandGrabInteractor>();
         leftFingerTip = GameObject.Find("l_index_finger_tip_marker").transform;
         rightFingerTip = GameObject.Find("r_index_finger_tip_marker").transform;
         table = GameObject.Find("Table");
 
-        //testing
-        if (name != "TestTangible")
-        {
-            testTangible = GameObject.Find("TestTangible");
-            CreateConnection(testTangible.GetComponent<Tangible>());
-        }
+
     }
 	private void Update()
 	{
@@ -47,18 +48,30 @@ public class Tangible : MonoBehaviour
             Vector3 vertex1Pos = Quaternion.Euler(-90, 0, 0) * tangibleLine.tangible1.transform.position;
             lineRenderer.SetPositions(new Vector3[] { vertex0Pos, vertex1Pos});
         }
+
+		foreach(TangibleLine tangibleLine in temporaryTangibleLines)
+        {
+            LineRenderer lineRenderer = tangibleLine.GetComponent<LineRenderer>();
+            // rotate Vectors, because line transform is rotateted by 90 degrees around x axis
+            Vector3 vertex0Pos = Quaternion.Euler(-90, 0, 0) * tangibleLine.tangible0.transform.position;
+            Vector3 vertex1Pos = Quaternion.Euler(-90, 0, 0) * tangibleLine.tangible1.transform.position;
+            lineRenderer.SetPositions(new Vector3[] { vertex0Pos, vertex1Pos});
+        }
+
 	}
 	// Update is called once per frame
 	void LateUpdate()
     {
-        GetComponent<Rigidbody>().useGravity = !inContactWithSurface;
-        
-        float rightIndexFingerTipDistanceFromSurface = rightFingerTip.position.y - surfaceHeight;
-        float leftIndexFingerTipDistanceFromSurface = leftFingerTip.position.y - surfaceHeight;
+        if(inContactWithSurface) Debug.Log("incontact");
+        float rightIndexFingerTipDistanceFromSurface = rightFingerTip.position.y - HeightToLock;
+        float leftIndexFingerTipDistanceFromSurface = leftFingerTip.position.y - HeightToLock;
         bool belowGrabThresholdRight = grabThreshold > rightIndexFingerTipDistanceFromSurface;
         bool belowGrabThresholdLeft = grabThreshold > leftIndexFingerTipDistanceFromSurface;
         bool rightHandLockCondition = rightHandState.Interactable != null && rightHandState.Interactable.gameObject == gameObject && belowGrabThresholdRight;
         bool leftHandLockCondition = leftHandState.Interactable != null && leftHandState.Interactable.gameObject == gameObject && belowGrabThresholdLeft;
+
+        if (transform.up.y < .99f || (rightHandState.Interactable != null && rightHandState.Interactable.gameObject == gameObject)) inContactWithSurface = false;
+        if (transform.up.y < .99f || (leftHandState.Interactable != null && leftHandState.Interactable.gameObject == gameObject)) inContactWithSurface = false;
         Vector3 tableColliderBounds = table.GetComponent<BoxCollider>().size;
         float tableXMin = table.transform.position.x - 0.9276f;
         float tableXMax = table.transform.position.x + 0.9276f;
@@ -67,10 +80,11 @@ public class Tangible : MonoBehaviour
         bool onTable = transform.position.x > tableXMin && transform.position.x < tableXMax && transform.position.z > tableZMin && transform.position.z < tableZMax;
         if ((rightHandLockCondition || leftHandLockCondition ) && onTable)
         {
-            transform.position = new Vector3(transform.position.x, surfaceHeight, transform.position.z);
+            transform.position = new Vector3(transform.position.x, HeightToLock, transform.position.z);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 
         }
+        //GetComponent<Rigidbody>().useGravity = !inContactWithSurface;
     }
     // Create a connection to another tangible
     public void CreateConnection(Tangible tangibleToConnect)
@@ -110,10 +124,28 @@ public class Tangible : MonoBehaviour
 	{
 		GameObject newLine = Instantiate(linePrefab);
 		TangibleLine newLineScript = newLine.GetComponent<TangibleLine>();
-		newLineScript.tangible0 = this;
-		newLineScript.tangible1 = tangibleToConnect;
+		newLineScript.tangible0 = gameObject;
+		newLineScript.tangible1 = tangibleToConnect.gameObject;
         tangibleLines.Add(newLineScript);
 	}
-
+    public void StartConnectionVisual()
+    {
+        GameObject newLine = Instantiate(linePrefab);
+        TangibleLine newLineScript = newLine.GetComponent<TangibleLine>();
+        newLineScript.tangible0 = gameObject;
+        if ((startNewConnectionButton.position - rightFingerTip.position).magnitude < (startNewConnectionButton.position - leftFingerTip.position).magnitude)
+        {
+            newLineScript.tangible1 = rightPoke.gameObject;
+            rightPoke.currentTangible = this;
+        }
+        else
+        {
+            newLineScript.tangible1 = leftPoke.gameObject;
+            leftPoke.currentTangible = this;
+        }
+        temporaryTangibleLines.Add(newLineScript);
+        
+    }
+    
 
 }

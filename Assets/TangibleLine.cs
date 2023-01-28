@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TangibleLine : MonoBehaviour
 {
-    public Tangible tangible0;
-    public Tangible tangible1;
+    public GameObject tangible0;
+    public GameObject tangible1;
     // Start is called before the first frame update
     void Start()
     {
