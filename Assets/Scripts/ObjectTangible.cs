@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class ObjectTangible : Tangible
 {
-    void Start()
-    {
-        
-    }
 
-    void Update()
-    {
-        
-    }
+
 }

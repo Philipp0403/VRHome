@@ -5,14 +5,5 @@ using UnityEngine;
 public class ActivationTangible : Tangible
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

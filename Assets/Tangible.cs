@@ -62,7 +62,7 @@ public class Tangible : MonoBehaviour
 	// Update is called once per frame
 	void LateUpdate()
     {
-        if(inContactWithSurface) Debug.Log("incontact");
+        //if(inContactWithSurface) Debug.Log("incontact");
         float rightIndexFingerTipDistanceFromSurface = rightFingerTip.position.y - HeightToLock;
         float leftIndexFingerTipDistanceFromSurface = leftFingerTip.position.y - HeightToLock;
         bool belowGrabThresholdRight = grabThreshold > rightIndexFingerTipDistanceFromSurface;

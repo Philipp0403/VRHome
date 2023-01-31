@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 2799195951262674363}
   - component: {fileID: 2799195951262674364}
   - component: {fileID: 2799195951262674365}
-  - component: {fileID: 8037710998539108182}
   - component: {fileID: 419830662}
   - component: {fileID: 8484848178894315046}
   - component: {fileID: 5417849710596933459}
@@ -48,7 +47,7 @@ Transform:
   - {fileID: 8793272764470564878}
   - {fileID: 4392311619718373709}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2799195951262674241
 Rigidbody:
@@ -237,31 +236,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.96, y: 2, z: 0.2}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &8037710998539108182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2799195951262674247}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690a54fcb65221f4281533a9134e24c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectedTangibles: []
-  tangibleLines: []
-  temporaryTangibleLines: []
-  inContactWithSurface: 0
-  HeightToLock: 0.9118493
-  grabThreshold: 0.2
-  leftHandState: {fileID: 0}
-  rightHandState: {fileID: 0}
-  leftFingerTip: {fileID: 0}
-  rightFingerTip: {fileID: 0}
-  linePrefab: {fileID: 6560571692410924507, guid: 54ac8ff19ec572f468c0a677b5ff910c,
-    type: 3}
-  startNewConnectionButton: {fileID: 4392311619718373709}
 --- !u!1818360608 &419830662
 PositionConstraint:
   m_ObjectHideFlags: 0
@@ -403,7 +377,7 @@ MonoBehaviour:
   tangibleLines: []
   temporaryTangibleLines: []
   inContactWithSurface: 0
-  HeightToLock: 1.1
+  HeightToLock: 0.914
   grabThreshold: 0.7
   leftHandState: {fileID: 0}
   rightHandState: {fileID: 0}
@@ -690,7 +664,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8037710998539108182}
+      objectReference: {fileID: 8932424224222635773}
     - target: {fileID: 3718601612112823234, guid: 323cb65d2594c79499a11a99ff0fb347,
         type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName

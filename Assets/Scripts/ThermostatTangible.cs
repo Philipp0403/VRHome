@@ -5,14 +5,5 @@ using UnityEngine;
 public class ThermostatTangible : ActivationTangible
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
