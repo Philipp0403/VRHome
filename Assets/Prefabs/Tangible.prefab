@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 5417849710596933459}
   - component: {fileID: 6116851645878906678}
   - component: {fileID: 480776972976052943}
+  - component: {fileID: 8932424224222635773}
   m_Layer: 0
   m_Name: Tangible
   m_TagString: Untagged
@@ -47,7 +48,7 @@ Transform:
   - {fileID: 8793272764470564878}
   - {fileID: 4392311619718373709}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2799195951262674241
 Rigidbody:
@@ -243,7 +244,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2799195951262674247}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 690a54fcb65221f4281533a9134e24c8, type: 3}
   m_Name: 
@@ -386,6 +387,31 @@ MonoBehaviour:
   _hoverColor: {r: 0, g: 0, b: 1, a: 1}
   _selectColor: {r: 0, g: 1, b: 0, a: 1}
   _disabledColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &8932424224222635773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2799195951262674247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dca22daca674dd4aa9927c1625b34a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectedTangibles: []
+  tangibleLines: []
+  temporaryTangibleLines: []
+  inContactWithSurface: 0
+  HeightToLock: 1.1
+  grabThreshold: 0.7
+  leftHandState: {fileID: 0}
+  rightHandState: {fileID: 0}
+  leftFingerTip: {fileID: 0}
+  rightFingerTip: {fileID: 0}
+  linePrefab: {fileID: 6560571692410924507, guid: 54ac8ff19ec572f468c0a677b5ff910c,
+    type: 3}
+  startNewConnectionButton: {fileID: 4392311619718373709}
 --- !u!1 &6590807972889852232
 GameObject:
   m_ObjectHideFlags: 0

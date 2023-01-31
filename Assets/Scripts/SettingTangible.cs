@@ -127,7 +127,7 @@ public class SettingTangible : Tangible
     {
 
     }
-    //Verbindung von Objecttangible mit leerem SettingsTangible
+    // Verbindung von Objecttangible mit leerem SettingsTangible
     public void SetOptions()
     {
         if (activationTangible)
@@ -152,5 +152,8 @@ public class SettingTangible : Tangible
             shuttersClosedBool = true;
         }
     }
+
+    // Verbindung von SettingsTangibles fuer SettingsTangibleGruppe
+
 
 }
