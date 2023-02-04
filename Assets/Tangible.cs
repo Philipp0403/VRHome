@@ -6,7 +6,7 @@ public class Tangible : MonoBehaviour
     public List<Tangible> connectedTangibles = new List<Tangible>();
     public List<TangibleLine> tangibleLines = new List<TangibleLine>();
     public List<TangibleLine> temporaryTangibleLines = new List<TangibleLine>();
-
+    public bool isCollidingWithSurface = false;
     public bool inContactWithSurface = false;
     public float HeightToLock = 1.1f;
     public float grabThreshold = 0.7f;
@@ -70,8 +70,7 @@ public class Tangible : MonoBehaviour
         bool rightHandLockCondition = rightHandState.Interactable != null && rightHandState.Interactable.gameObject == gameObject && belowGrabThresholdRight;
         bool leftHandLockCondition = leftHandState.Interactable != null && leftHandState.Interactable.gameObject == gameObject && belowGrabThresholdLeft;
 
-        if (transform.up.y < .99f || (rightHandState.Interactable != null && rightHandState.Interactable.gameObject == gameObject)) inContactWithSurface = false;
-        if (transform.up.y < .99f || (leftHandState.Interactable != null && leftHandState.Interactable.gameObject == gameObject)) inContactWithSurface = false;
+        inContactWithSurface = (transform.up.y > .99f && ((rightHandLockCondition || leftHandLockCondition) || isCollidingWithSurface));
         Vector3 tableColliderBounds = table.GetComponent<BoxCollider>().size;
         float tableXMin = table.transform.position.x - 0.9276f;
         float tableXMax = table.transform.position.x + 0.9276f;

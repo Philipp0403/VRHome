@@ -19,21 +19,14 @@ public class Surface : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
 	{
-        if (collision.transform.up.y > .99f)
-        {
-
-            point.transform.position = collision.collider.transform.position;
-            collision.gameObject.GetComponent<Tangible>().inContactWithSurface = true;
-            //collision.gameObject.GetComponent<Tangible>().surfaceHeight = collision.transform.position.y+.001f;
-        }
+        collision.gameObject.GetComponent<Tangible>().isCollidingWithSurface = true;
     }
     private void OnCollisionExit(Collision collision)
 	{
 
-        if (collision.transform.up.y < .99f)
-        {
-            collision.gameObject.GetComponent<Tangible>().inContactWithSurface = false;
-        }
+
+         collision.gameObject.GetComponent<Tangible>().isCollidingWithSurface = false;
+
     }
 
 }
