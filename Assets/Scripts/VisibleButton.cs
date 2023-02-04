@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.DeviceSimulation;
 using UnityEngine;
 
 public class VisibleButton : MonoBehaviour
@@ -24,15 +23,18 @@ public class VisibleButton : MonoBehaviour
 
     public void onOff()
     {
+        Debug.Log("Bin in der Methode drin!");
         if (Sichtbar.activeSelf)
         {
             Sichtbar.SetActive(false);
             SichtbarOnOff.SetActive(true);
+            Debug.Log("Was ist Off: " + Sichtbar.activeSelf);
         }
-        else
+        else if (SichtbarOnOff.activeSelf)
         {
             Sichtbar.SetActive(true);
             SichtbarOnOff.SetActive(false);
+            Debug.Log("Was ist On: " + SichtbarOnOff.activeSelf);
         }
     }
 }

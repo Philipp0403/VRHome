@@ -1704,7 +1704,7 @@ Transform:
   - {fileID: 7047122686236453664}
   - {fileID: 8996775774092349253}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &7540894065552364788
 GameObject:
@@ -4296,6 +4296,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3718601612112823234, guid: 323cb65d2594c79499a11a99ff0fb347,
         type: 3}
+      propertyPath: _pointable
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718601612112823234, guid: 323cb65d2594c79499a11a99ff0fb347,
+        type: 3}
       propertyPath: _whenRelease.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -4303,6 +4308,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718601612112823234, guid: 323cb65d2594c79499a11a99ff0fb347,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3718601612112823234, guid: 323cb65d2594c79499a11a99ff0fb347,
         type: 3}
@@ -4496,8 +4506,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6198825956437652943, guid: 323cb65d2594c79499a11a99ff0fb347, type: 3}
-    - {fileID: 3718601612112823234, guid: 323cb65d2594c79499a11a99ff0fb347, type: 3}
     - {fileID: 3494393462330821194, guid: 323cb65d2594c79499a11a99ff0fb347, type: 3}
+    - {fileID: 3718601612112823234, guid: 323cb65d2594c79499a11a99ff0fb347, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3159839825100900288, guid: 323cb65d2594c79499a11a99ff0fb347, type: 3}
     - {fileID: 9113080431008026797, guid: 323cb65d2594c79499a11a99ff0fb347, type: 3}
@@ -4995,7 +5005,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7030581951791150531}
     - target: {fileID: 8380592889395411329, guid: 7394bb1b12bb1459eb57abf821ec8aa9,
         type: 3}
       propertyPath: _collider
@@ -5506,7 +5516,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8710058584898576009}
     - target: {fileID: 8380592889395411329, guid: 7394bb1b12bb1459eb57abf821ec8aa9,
         type: 3}
       propertyPath: _collider

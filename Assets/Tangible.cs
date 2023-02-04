@@ -31,7 +31,8 @@ public class Tangible : MonoBehaviour
         rightFingerTip = GameObject.Find("r_index_finger_tip_marker").transform;
         table = GameObject.Find("Table");
 
-
+        //testing
+        CreateConnection(GameObject.Find("TestTangible").GetComponent<Tangible>());
     }
 	private void Update()
 	{
