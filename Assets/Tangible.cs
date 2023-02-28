@@ -8,8 +8,8 @@ public class Tangible : MonoBehaviour
     public List<TangibleLine> temporaryTangibleLines = new List<TangibleLine>();
     public bool isCollidingWithSurface = false;
     public bool inContactWithSurface = false;
-    public float HeightToLock = 1.1f;
-    public float grabThreshold = 0.7f;
+    public float HeightToLock = 0.914f;
+    public float grabThreshold = 0.2f;
     public Oculus.Interaction.HandGrab.HandGrabInteractor leftHandState;
     public Oculus.Interaction.HandGrab.HandGrabInteractor rightHandState;
     public Transform leftFingerTip;
@@ -20,6 +20,7 @@ public class Tangible : MonoBehaviour
     public Transform startNewConnectionButton;
     PokeInteractorVRHome rightPoke;
     PokeInteractorVRHome leftPoke;
+    public GameObject ButtonsToHide;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,7 @@ public class Tangible : MonoBehaviour
         table = GameObject.Find("Table");
 
         //testing
-        CreateConnection(GameObject.Find("TestTangible").GetComponent<Tangible>());
+        //CreateConnection(GameObject.Find("TestTangible").GetComponent<Tangible>());
     }
 	private void Update()
 	{
@@ -71,19 +72,22 @@ public class Tangible : MonoBehaviour
         bool rightHandLockCondition = rightHandState.Interactable != null && rightHandState.Interactable.gameObject == gameObject && belowGrabThresholdRight;
         bool leftHandLockCondition = leftHandState.Interactable != null && leftHandState.Interactable.gameObject == gameObject && belowGrabThresholdLeft;
 
-        inContactWithSurface = (transform.up.y > .99f && ((rightHandLockCondition || leftHandLockCondition) || isCollidingWithSurface));
         Vector3 tableColliderBounds = table.GetComponent<BoxCollider>().size;
-        float tableXMin = table.transform.position.x - 0.9276f;
-        float tableXMax = table.transform.position.x + 0.9276f;
-        float tableZMin = table.transform.position.z - 0.5207f;
-        float tableZMax = table.transform.position.z + 0.5207f;
+        float tableXMin = table.transform.position.x - 0.5207f;
+        float tableXMax = table.transform.position.x + 0.5207f;
+        float tableZMin = table.transform.position.z - 0.9276f;
+        float tableZMax = table.transform.position.z + 0.9276f;
         bool onTable = transform.position.x > tableXMin && transform.position.x < tableXMax && transform.position.z > tableZMin && transform.position.z < tableZMax;
-        if ((rightHandLockCondition || leftHandLockCondition ) && onTable)
+        inContactWithSurface = onTable && transform.position.y <= HeightToLock + grabThreshold && transform.position.y >= HeightToLock - grabThreshold;
+
+        if ((rightHandLockCondition || leftHandLockCondition) && onTable)
         {
             transform.position = new Vector3(transform.position.x, HeightToLock, transform.position.z);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 
         }
+        ButtonsToHide?.SetActive(inContactWithSurface);
+        startNewConnectionButton.gameObject.SetActive(inContactWithSurface);
         //GetComponent<Rigidbody>().useGravity = !inContactWithSurface;
     }
     // Create a connection to another tangible
